@@ -1,6 +1,8 @@
 package com.example.demo3;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,9 +29,21 @@ class Demo3ApplicationTests {
 	}
 	
 	@Test
+	void testAddFail() {
+		assertNotEquals(6, calculator.add(2, 3), "2 + 3 should not be 6.");
+		assertNotEquals(7, calculator.add(-2, 3), "-2 + 3 should not be 7");
+	}
+
+	@Test
 	void testMultiply() {
 		assertEquals(20, calculator.multiply(5, 4), "5 * 4 must be 20.");
 		assertEquals(0, calculator.multiply(5, 0), "5 * 0 must be 0.");
+	}
+	
+	@Test
+	void testMultiplyFail() {
+		assertNotEquals(30, calculator.multiply(5, 4), "5 * 4 should not be 30");
+		assertNotEquals(5, calculator.multiply(5, 0), "5 * 0 should not be 1");
 	}
 	
 	@Test
@@ -38,5 +52,10 @@ class Demo3ApplicationTests {
 		assertEquals(-2, calculator.subtract(2, 4), "2 - 4 must be -2.");
 	}
 	
-
+	@Test
+	void testSubFail() {
+		assertNotEquals(11, calculator.subtract(12, 2), "12 - 2 should not be 11.");
+		assertNotEquals(-3, calculator.subtract(2, 4), "2 - 4 should not be -3.");
+	}	
+	
 }
